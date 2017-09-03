@@ -30,7 +30,6 @@
 #include "utils/json.h"
 #include "utils/jsonb.h"
 #include "utils/timestamp.h"
-#include "utils/varlena.h"
 
 typedef enum MinMax {min, max} MinMax;  
 
