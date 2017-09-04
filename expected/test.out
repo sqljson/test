@@ -41,3 +41,55 @@ SELECT knife_extract('{"a":{"b": {"c": 5.3, "d": 6.7}}}', '[["a","b","c"],["a","
  {5.3,6.7}
 (1 row)
 
+SELECT knife_extract_text(
+  '{"a": {"b": [{"c": "l", "d": "o"}, {"c": 1, "d": ["b", "o", "k"]}]}}',
+  '[["a","b","c"],["a","b","d"]]'
+  );
+ knife_extract_text 
+--------------------
+ {l,o,b,o,k}
+(1 row)
+
+SELECT
+'^' ||
+array_to_string(
+  knife_extract_text(
+    '{"a": {"b": [{"c": "l", "d": "o"}, {"c": 1, "d": ["b", "o", "k"]}]}}',
+    '[["a","b","c"],["a","b","d"]]'
+  ),
+  '$^'
+)
+|| '$'
+;
+    ?column?     
+-----------------
+ ^l$^o$^b$^o$^k$
+(1 row)
+
+SELECT knife_extract_numeric(
+'{"a": 1, "b": [2,3], "c": {"d": 5}}',
+'[["a"],["b"],["c", "d"]]'
+);
+ knife_extract_numeric 
+-----------------------
+ {1,2,3,5}
+(1 row)
+
+SELECT knife_extract_max_numeric(
+'{"a": 1, "b": 2, "c": {"d": 5}}',
+'[["a"],["b"],["c", "d"]]'
+);
+ knife_extract_max_numeric 
+---------------------------
+                         5
+(1 row)
+
+SELECT knife_extract_min_numeric(
+'{"a": 1, "b": 2, "c": {"d": 5}}',
+'[["a"],["b"],["c", "d"]]'
+);
+ knife_extract_min_numeric 
+---------------------------
+                         1
+(1 row)
+
