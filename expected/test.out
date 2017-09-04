@@ -190,12 +190,12 @@ SELECT knife_extract_text('{"resourceType": "Some", "name": [{"use": "official",
 (1 row)
 
 create table patient (id serial, resource jsonb);
-CREATE TABLE
+
 insert into  patient (resource)
 values
 ('{"resourceType": "Some", "name": [{"use": "official", "given": ["nicola"], "family": ["Ryzhikov"]}, {"use": "common", "given": ["c", "d"]}]}'),
 ('{"name": [{"given": ["Nikolai"]}], "resourceType": "Patient"}');
-INSERT 0 2
+
 SELECT knife_extract_text(resource, '[["name","given"],["name","family"]]') from patient;
   knife_extract_text   
 -----------------------
