@@ -357,7 +357,7 @@ reduce_path(JsonbValue *jbv, JsonbValue **path, int current_idx, int path_len, v
 	long num_results = 0;
 
 	check_stack_depth();
-	elog(INFO, "enter with: %s", jsonbv_to_string(jbv));
+	/* elog(INFO, "enter with: %s", jsonbv_to_string(jbv)); */
 
 	/*
 	 * if JsonbValue is empty then nothing to do
