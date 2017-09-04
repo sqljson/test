@@ -189,8 +189,6 @@ SELECT knife_extract_text('{"resourceType": "Some", "name": [{"use": "official",
  {nicola,c,d,Ryzhikov}
 (1 row)
 
-drop table  if exists patient;
-DROP TABLE
 create table patient (id serial, resource jsonb);
 CREATE TABLE
 insert into  patient (resource)
